@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 //import java.util.List;
+import java.util.List;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
@@ -56,12 +57,24 @@ public class FileService {
 //			record.get(3);
 			
 			//Without Headers
+//		Iterable<CSVRecord> records = CSVFormat.DEFAULT.withIgnoreSurroundingSpaces().parse(in);
+//		Iterable<CSVRecord> records = CSVFormat.DEFAULT.withQuote('"';
+		
+		Iterable<CSVRecord> records = CSVFormat.DEFAULT.withDelimiter(',')
+				.withQuote('"')
+				.withEscape('\\')
+				.withIgnoreSurroundingSpaces(true).parse(in);
+//				newFormat(',').withQuote('"').parse(in);
 
-		Iterable<CSVRecord> records = CSVFormat.DEFAULT.withQuote(null).parse(in);
+//		CSVFormat format = CSVFormat.DEFAULT.withDelimiter(',')
+//				.withQuote('"')
+//				.withEscape('\\')
+//				.withIgnoreSurroundingSpaces(true);
+//		
+		
 		for (CSVRecord record : records) {
 			
-			
-			//convert from string for all types
+		
 			recipeList.add(new Recipe(
 					Integer.parseInt(record.get(0)),
 					Boolean.parseBoolean(record.get(1)),

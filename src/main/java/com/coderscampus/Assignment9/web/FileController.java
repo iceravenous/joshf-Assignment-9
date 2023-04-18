@@ -24,4 +24,27 @@ private FileService fileService;
 	
 		return fileService.readRecipe(recipeList);		
 	}
+	
+	@GetMapping("/vegan")
+	public List<Recipe> readLinesVegan() throws IOException {
+		return fileService.readRecipe(recipeList, "vegan");
+				
+	}
+	@GetMapping("/gluten-free")
+	public List<Recipe> readLinesGlutenFree() throws IOException {
+		return fileService.readRecipe(recipeList, "gluten-free");
+				
+	}
+	
+	@GetMapping("/vegetarian")
+	public List<Recipe> readLinesVegetarian() throws IOException {
+		return fileService.readRecipe(recipeList, "vegetarian");
+				
+	}
+	@GetMapping("/vegetarian-and-gluten-free")
+	public List<Recipe> readLinesVegetariangf() throws IOException {
+		return fileService.readRecipe(recipeList, "vegetarian-and-gluten-free");
+				
+	}
+	
 }

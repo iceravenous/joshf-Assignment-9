@@ -143,11 +143,11 @@ public class Recipe {
 
 	@Override
 	public String toString() {
-		return "Recipe [cookingMinutes=" + cookingMinutes + ", dairyFree=" + dairyFree + ", glutenFree=" + glutenFree
+		return "/nRecipe [cookingMinutes=" + cookingMinutes + ", dairyFree=" + dairyFree + ", glutenFree=" + glutenFree
 				+ ", instructions=" + instructions + ", preparationMinutes=" + preparationMinutes + ", pricePerServing="
 				+ pricePerServing + ", readyInMinutes=" + readyInMinutes + ", servings=" + servings
 				+ ", spoonacularScore=" + spoonacularScore + ", title=" + title + ", vegan=" + vegan + ", vegetarian="
-				+ vegetarian + "]";
+				+ vegetarian + "]" + "/n/n";
 	}
     
     

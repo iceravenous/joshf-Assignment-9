@@ -21,38 +21,47 @@ public class FileService {
 		//Read the file twice? Once to get Headers, then read a second time to get the rest
 		public ArrayList<Recipe> readRecipe(ArrayList<Recipe> recipeList) throws IOException {
 	
-			Reader in = new FileReader("recipes2.txt");
+			Reader in = new FileReader("recipes.txt");
+			
 			Iterable<CSVRecord> records = CSVFormat.DEFAULT.withDelimiter(',')
 					.withQuote('"')
 					.withEscape('\\')
-					.withIgnoreSurroundingSpaces(true).parse(in);
+					.withIgnoreSurroundingSpaces(true)
+//					.withSkipHeaderRecord()
+					.parse(in);
 			if (recipeList.size() == 0) {
 				for (CSVRecord record : records) {
-					recipeList.add(new Recipe(
-							Integer.parseInt(record.get(0)),
-							Boolean.parseBoolean(record.get(1)),
-							Boolean.parseBoolean(record.get(2)),
-							record.get(3),
-							Double.parseDouble(record.get(4)),
-							Double.parseDouble(record.get(5)),
-							Integer.parseInt(record.get(6)),
-							Integer.parseInt(record.get(7)),
-							Double.parseDouble(record.get(8)),
-							record.get(9),
-							Boolean.parseBoolean(record.get(10)),				
-									Boolean.parseBoolean(record.get(11))
-							));
+					if (record.get(0).equals("Cooking Minutes")) {
+						System.out.println("Header");
+					} else {
+						recipeList.add(new Recipe(
+								Integer.parseInt(record.get(0)),
+								Boolean.parseBoolean(record.get(1)),
+								Boolean.parseBoolean(record.get(2)),
+								record.get(3),
+								Double.parseDouble(record.get(4)),
+								Double.parseDouble(record.get(5)),
+								Integer.parseInt(record.get(6)),
+								Integer.parseInt(record.get(7)),
+								Double.parseDouble(record.get(8)),
+								record.get(9),
+								Boolean.parseBoolean(record.get(10)),				
+										Boolean.parseBoolean(record.get(11))
+								));	
+					}
+					
 				}
 			}
 		return recipeList;
 	}
 		public List<Recipe> readRecipe(List<Recipe> recipeList, String filter) throws IOException {
 			
-			Reader in = new FileReader("recipes2.txt");
+			Reader in = new FileReader("recipes.txt");
 			Iterable<CSVRecord> records = CSVFormat.DEFAULT.withDelimiter(',')
 					.withQuote('"')
 					.withEscape('\\')
-					.withIgnoreSurroundingSpaces(true).parse(in);
+					.withIgnoreSurroundingSpaces(true)
+					.withSkipHeaderRecord().parse(in);
 			if (recipeList.size() == 0) {
 				for (CSVRecord record : records) {
 					recipeList.add(new Recipe(
